@@ -1,0 +1,51 @@
+:root {
+    --fun-green-50: #ecfff6;
+    --fun-green-100: #d2ffed;
+    --fun-green-200: #a8ffdb;
+    --fun-green-300: #65ffc1;
+    --fun-green-400: #1bff9f;
+    --fun-green-500: #00f980;
+    --fun-green-600: #00d066;
+    --fun-green-700: #00a253;
+    --fun-green-800: #007e46;
+    --fun-green-900: #00693e;
+    --fun-green-950: #003b1f;
+}
+
+body {
+    background-color: var(--fun-green-50);
+    background-image: linear-gradient(180deg, var(--fun-green-50) 0%, var(--fun-green-100) 100%);
+}
+
+label {
+    color: var(--fun-green-900);
+}
+
+button {
+    background-color: var(--fun-green-900) !important;
+    border-color: var(--fun-green-50) !important;
+}
+
+input::placeholder {
+    color: var(--fun-green-900) !important;
+}
+
+select {
+    background-color: var(--fun-green-50) !important;
+    border-color: var(--fun-green-900) !important;
+}
+
+input {
+    background-color: var(--fun-green-50) !important;
+    border-color: var(--fun-green-900) !important;
+}
+
+span {
+    color: var(--fun-green-50) !important;
+    background-color: var(--fun-green-800) !important;
+    border-color: var(--fun-green-900) !important;
+}
+
+.h-100 {
+    height: 60vh !important;
+}

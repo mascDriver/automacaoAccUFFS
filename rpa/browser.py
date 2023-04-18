@@ -88,14 +88,14 @@ class Browser:
             ).click()
             WebDriverWait(self.driver, 10).until(EC.presence_of_element_located((By.ID, ':0.contentEl')))
             div = self.driver.find_element(By.ID, ':0.contentEl')
-            WebDriverWait(self.driver, 10).until(EC.presence_of_element_located((By.TAG_NAME, 'iframe')))
+            WebDriverWait(div, 10).until(EC.presence_of_element_located((By.TAG_NAME, 'iframe')))
             iframe = div.find_element(By.TAG_NAME, 'iframe')
             self.driver.switch_to.frame(iframe)
+            WebDriverWait(self.driver, 10).until(EC.presence_of_element_located((By.XPATH, XPATHS['arquivo'])))
             self.driver.find_element(By.XPATH, XPATHS['arquivo']).send_keys(file_path)
+            WebDriverWait(self.driver, 30000).until(EC.presence_of_element_located((By.XPATH, XPATHS['email'])))
             while True:
-                if WebDriverWait(self.driver, 120).until(
-                        EC.presence_of_element_located((By.XPATH, XPATHS['email']))):
-                    if not self.driver.find_element(By.XPATH, XPATHS['email']).get_attribute('value'):
-                        break
-            default_storage.delete(temp_file_path)
+                if not self.driver.find_element(By.XPATH, XPATHS['email']).get_attribute('value'):
+                    break
+            default_storage.delete(file_path)
         self.driver.quit()

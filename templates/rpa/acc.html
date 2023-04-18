@@ -2,7 +2,7 @@
 
 {% block content %}
     <div class="container h-100">
-        <div class="row h-100 justify-content-center align-items-center">
+        <div class="row justify-content-center align-items-center">
             <form method="post" enctype="multipart/form-data">
                 {% csrf_token %}
                 {% for field in form %}
@@ -45,17 +45,4 @@
             </form>
         </div>
     </div>
-{% endblock %}
-
-{% block scripts %}
-    <!-- Import Bootstrap JS here if needed -->
-{% endblock %}
-
-{% block styles %}
-    <style>
-        .h-100 {
-            height: 100vh !important;
-        }
-    </style>
-    <!-- Import Bootstrap CSS here if needed -->
 {% endblock %}

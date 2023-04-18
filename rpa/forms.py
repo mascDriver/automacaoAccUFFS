@@ -19,4 +19,8 @@ class AccForm(forms.Form):
 
     def initialize_rpa(self):
         browser = Browser()
-        browser.insert_data(self.cleaned_data, self.files)
+        try:
+            browser.insert_data(self.cleaned_data, self.files)
+        except:
+            return False, 'Erro interno'
+        return True, ''
