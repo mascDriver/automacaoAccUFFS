@@ -1,0 +1,43 @@
+<component name="InspectionProjectProfileManager">
+  <profile version="1.0">
+    <option name="myName" value="Project Default" />
+    <inspection_tool class="HtmlUnknownTag" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="myValues">
+        <value>
+          <list size="7">
+            <item index="0" class="java.lang.String" itemvalue="nobr" />
+            <item index="1" class="java.lang.String" itemvalue="noembed" />
+            <item index="2" class="java.lang.String" itemvalue="comment" />
+            <item index="3" class="java.lang.String" itemvalue="noscript" />
+            <item index="4" class="java.lang.String" itemvalue="embed" />
+            <item index="5" class="java.lang.String" itemvalue="script" />
+            <item index="6" class="java.lang.String" itemvalue="p" />
+          </list>
+        </value>
+      </option>
+      <option name="myCustomValuesEnabled" value="true" />
+    </inspection_tool>
+    <inspection_tool class="PyPackageRequirementsInspection" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="ignoredPackages">
+        <value>
+          <list size="14">
+            <item index="0" class="java.lang.String" itemvalue="rcssmin" />
+            <item index="1" class="java.lang.String" itemvalue="jsmin" />
+            <item index="2" class="java.lang.String" itemvalue="python-Levenshtein" />
+            <item index="3" class="java.lang.String" itemvalue="social-core" />
+            <item index="4" class="java.lang.String" itemvalue="cryptography" />
+            <item index="5" class="java.lang.String" itemvalue="packaging" />
+            <item index="6" class="java.lang.String" itemvalue="django-compressor" />
+            <item index="7" class="java.lang.String" itemvalue="pyasn1" />
+            <item index="8" class="java.lang.String" itemvalue="pycrypto" />
+            <item index="9" class="java.lang.String" itemvalue="regex" />
+            <item index="10" class="java.lang.String" itemvalue="social-app-django" />
+            <item index="11" class="java.lang.String" itemvalue="pyparsing" />
+            <item index="12" class="java.lang.String" itemvalue="django-rest-framework" />
+            <item index="13" class="java.lang.String" itemvalue="Faker" />
+          </list>
+        </value>
+      </option>
+    </inspection_tool>
+  </profile>
+</component>

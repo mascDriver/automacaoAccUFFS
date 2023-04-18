@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="container h-100">
+        <div class="row h-100 justify-content-center align-items-center">
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                {% for field in form %}
+                    <div class="form-group row mb-2">
+                        <label for="{{ field.id_for_label }}" class="col-sm-2 col-form-label">{{ field.label }}</label>
+                        <div class="col-sm-10">
+                            {% if field.label == 'Email' %}
+                                <div class="input-group">
+                                    <input type="text" name="email" maxlength="100" class="form-control" required=""
+                                           id="id_email" aria-describedby="basic-addon2">
+                                    <span class="input-group-text" id="basic-addon2">@estudante.uffs.edu.br</span>
+                                </div>
+                            {% else %}
+                                {{ field }}
+                            {% endif %}
+                            {% if field.help_text %}
+                                <small id="{{ field.id_for_label }}HelpBlock"
+                                       class="form-text text-muted">{{ field.help_text }}</small>
+                            {% endif %}
+                            {% if field.errors %}
+                                <div class="invalid-feedback">
+                                    {% for error in field.errors %}
+                                        <div>{{ error }}</div>
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                {% endfor %}
+                {% if form.errors %}
+                    <div class="alert alert-danger mt-3" role="alert">
+                        {% for field, errors in form.errors.items %}
+                            {% for error in errors %}
+                                {{ field|title }}: {{ error }}
+                            {% endfor %}
+                        {% endfor %}
+                    </div>
+                {% endif %}
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+    </div>
+{% endblock %}
+
+{% block scripts %}
+    <!-- Import Bootstrap JS here if needed -->
+{% endblock %}
+
+{% block styles %}
+    <style>
+        .h-100 {
+            height: 100vh !important;
+        }
+    </style>
+    <!-- Import Bootstrap CSS here if needed -->
+{% endblock %}
