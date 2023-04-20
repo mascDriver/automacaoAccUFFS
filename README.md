@@ -1,5 +1,5 @@
 <p align="center">
-    <img width="800" src=".github/logo.png" title="Logo do projeto"><br />
+    <img width="800" src="assets/logo_uffs.png" title="Logo do projeto"><br />
     <img src="https://img.shields.io/maintenance/yes/2023?style=for-the-badge" title="Status do projeto">
 </p>
 
@@ -17,7 +17,7 @@ Django.
 * 🥢 Automação do preenchimento de formulário no forms do google;
 * 🖖 Envio automático dos certificados
 
-## Tecnologias
+## 🔧 Tecnologias
 
 - 🐍 Python
 - 🖥 Django
@@ -55,7 +55,7 @@ python manage.py runserver
 
 > **IMPORTANTE:** Este projeto é fornecido "como está" e eu não me responsabilizo por qualquer dano que possa ocorrer
 > durante o uso do sistema. Certifique-se de testar o sistema completamente antes de utilizá-lo em um ambiente de
-> produção.
+> produção e validar os dados que foram preenchidos.
 
 ## Considerações finais
 

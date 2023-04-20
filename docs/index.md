@@ -1,5 +1,5 @@
 <p align="center">
-    <img width="800" src=".github/logo.png" title="Logo do projeto"><br />
+    <img width="800" src="../assets/logo_uffs.png" title="Logo do projeto"><br />
     <img src="https://img.shields.io/maintenance/yes/2023?style=for-the-badge" title="Status do projeto">
 </p>
 
@@ -8,13 +8,16 @@
 Este projeto tem como objetivo automatizar o envio de certificados para validação de ACCs utilizando RPA com Selenium e
 Django.
 
+> **IMPORTANTE:** O sistema só suporta certificados das Alura até a data desse commit.
+> Outros certificados não funcionarão!
+
 ## ✨ Funcionalidades
 
 * ✔️ Coleta de informações dos certificados: nome do aluno, nome do curso, data de conclusão, etc.
 * 🥢 Automação do preenchimento de formulário no forms do google;
 * 🖖 Envio automático dos certificados
 
-## Tecnologias
+## 🔧 Tecnologias
 
 - 🐍 Python
 - 🖥 Django
@@ -26,13 +29,13 @@ Django.
 
 Geralmente o primeiro passo para começar é instalar dependências para rodar o projeto. Rode:
 
-```
+```shell
 pip install -r requirements.txt
 ```
 
 Execute o servidor Django:
 
-```
+```shell
 python manage.py runserver
 ```
 
@@ -40,19 +43,19 @@ python manage.py runserver
 
 ### Acesse a página inicial da aplicação
 
-![Preenchendo campos](preenchendo_campos.gif)
+![Preenchendo campos](../preenchendo_campos.gif)
 
-### O sistema vai preencher com base preenchido no form incial e o que encontrou no arquivo PDF e ira automatizar a escrita no forms do google
+#### O sistema vai preencher com base preenchido no form incial e o que encontrou no arquivo PDF e ira automatizar a escrita no forms do google para todos pdfs que foram enviados
 
-![Usando RPA](usando_rpa.gif)
+![Usando RPA](../usando_rpa.gif)
 
-### Clique em enviar
+### Clique em enviar e submeter outra resposta que o sistema irá iniciar o processo para o próximo pdf
 
 ## Aviso de responsabilidade
 
 > **IMPORTANTE:** Este projeto é fornecido "como está" e eu não me responsabilizo por qualquer dano que possa ocorrer
 > durante o uso do sistema. Certifique-se de testar o sistema completamente antes de utilizá-lo em um ambiente de
-> produção.
+> produção e validar os dados que foram preenchidos.
 
 ## Considerações finais
 
@@ -77,11 +80,3 @@ disponível de graça.
 ## 🧬 Changelog
 
 Veja todas as alterações desse projeto no arquivo [CHANGELOG.md](CHANGELOG.md).
-
-## 🧪 Projetos semelhates
-
-Abaixo está uma lista de links interessantes e projetos similares:
-
-* [Outro projeto](https://github.com/projeto)
-* [Projeto inspiração](https://github.com/projeto)
-* [Ferramenta semelhante](https://github.com/projeto)

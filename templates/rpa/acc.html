@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <div class="container h-100">
+    <div class="container">
         <div class="row justify-content-center align-items-center">
             <form method="post" enctype="multipart/form-data">
                 {% csrf_token %}
@@ -41,7 +41,22 @@
                         {% endfor %}
                     </div>
                 {% endif %}
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <div class="p-3">
+                    <button class="btn btn-danger" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#second-form"
+                            aria-expanded="false" aria-controls="second-form">
+                        Alterar XPATHS
+                    </button>
+
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+
+                <div class="collapse mt-3" id="second-form">
+                    <form method="post">
+                        {% csrf_token %}
+                        {{ form2.as_p }}
+                    </form>
+                </div>
             </form>
         </div>
     </div>

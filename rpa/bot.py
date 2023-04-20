@@ -16,18 +16,7 @@ MONTHS = {
     'outubro': 10, 'novembro': 11, 'dezembro': 12
 }
 
-XPATHS = {
-    'email': '//*[@id="mG61Hd"]/div[2]/div/div[2]/div[1]/div/div[1]/div[2]/div[1]/div/div[1]/input',
-    'nome': '//*[@id="mG61Hd"]/div[2]/div/div[2]/div[3]/div/div/div[2]/div/div[1]/div/div[1]/input',
-    'cpf': '//*[@id="mG61Hd"]/div[2]/div/div[2]/div[4]/div/div/div[2]/div/div[1]/div/div[1]/input',
-    'matricula': '//*[@id="mG61Hd"]/div[2]/div/div[2]/div[5]/div/div/div[2]/div/div[1]/div/div[1]/input',
-    'data_inicio': '//*[@id="mG61Hd"]/div[2]/div/div[2]/div[11]/div/div/div[2]/div/div/div[2]/div[1]/div/div[1]/input',
-    'data_fim': '//*[@id="mG61Hd"]/div[2]/div/div[2]/div[12]/div/div/div[2]/div/div/div[2]/div[1]/div/div[1]/input',
-    'horas_curso': '//*[@id="mG61Hd"]/div[2]/div/div[2]/div[13]/div/div/div[2]/div/div[1]/div/div[1]/input',
-    'arquivo': '//input[@type="file"]',
-    'atividade': '//*[@id="mG61Hd"]/div[2]/div/div[2]/div[8]/div/div/div[2]/div/div[1]/div/div[1]/input',
-    'empresa': '//*[@id="mG61Hd"]/div[2]/div/div[2]/div[9]/div/div/div[2]/div/div[1]/div/div[1]/input'
-}
+FORMAT_DATE = {'pt-BR': '%d/%m/%Y', 'en-US': '%m/%d/%Y', 'en': '%m/%d/%Y'}
 
 
 class PdfManager:
@@ -50,40 +39,42 @@ def prepare_file(file):
 
 
 class BotGoogleForm:
-    def __init__(self, data, files):
+    def __init__(self, data, files, xpaths):
         self.browser = Browser()
         self.data = data
         self.files = files
+        self.xpaths = xpaths
 
-    def extract_information_alura_normal(self, text):
+    def extract_information_alura_normal(self, text, language):
         data_finalizado, curso = text.split('Finalizado em ')[-1].split(' Curso_ ')
         data_finalizado = data_finalizado.split(' de ')
         data_finalizado = parse(f'{data_finalizado[0]}/{MONTHS[data_finalizado[1]]}/{data_finalizado[2]}')
         curso = curso.split(' Em parceria com')[0]
         horas_curso = text.split('carga horária estimada em ')[-1].split(' horas')[0]
         self.data.update({
-            'data_inicio': (data_finalizado - timedelta(random.randint(1, 4))).strftime('%d/%m/%Y'),
-            'data_fim': data_finalizado.strftime('%d/%m/%Y'),
+            'data_inicio': (data_finalizado - timedelta(random.randint(1, 4))).strftime(FORMAT_DATE[language]),
+            'data_fim': data_finalizado.strftime(FORMAT_DATE[language]),
             'horas_curso': horas_curso,
             'atividade': curso,
         })
 
-    def extract_information_alura_formal(self, text):
+    def extract_information_alura_formal(self, text, language):
         data_inicio, data_fim = text.split('no período de ')[-1].split('. ')[0].split(' a ')
         curso = text.split('o curso online "')[-1].split('" de carga')[0]
         horas_curso = text.split('de carga horária estimada em ')[-1].split(' hora')[0]
         self.data.update({
-            'data_inicio': data_inicio,
-            'data_fim': data_fim,
+            'data_inicio': parse(data_inicio).strftime(FORMAT_DATE[language]),
+            'data_fim': parse(data_fim).strftime(FORMAT_DATE[language]),
             'horas_curso': horas_curso,
             'atividade': curso,
         })
 
     def extract_information(self, text):
+        language = self.browser.driver.execute_script("return window.navigator.userLanguage || window.navigator.language")
         if self.data.get('empresa') == '0':
-            self.extract_information_alura_normal(text)
+            self.extract_information_alura_normal(text, language)
         elif self.data.get('empresa') == '1':
-            self.extract_information_alura_formal(text)
+            self.extract_information_alura_formal(text, language)
 
     def fill_form(self):
         for key, value in self.data.items():
@@ -92,9 +83,9 @@ class BotGoogleForm:
             elif key == 'arquivo':
                 continue
             elif key == 'empresa':
-                self.browser.driver.find_element(By.XPATH, XPATHS[key]).send_keys('Alura')
+                self.browser.driver.find_element(By.XPATH, self.xpaths[f"xpath_{key}"]).send_keys('Alura')
             else:
-                self.browser.driver.find_element(By.XPATH, XPATHS[key]).send_keys(value)
+                self.browser.driver.find_element(By.XPATH, self.xpaths[f"xpath_{key}"]).send_keys(value)
 
     def fill_file(self, file_path):
         self.browser.driver.find_element(
@@ -106,10 +97,11 @@ class BotGoogleForm:
         WebDriverWait(div, 10).until(EC.presence_of_element_located((By.TAG_NAME, 'iframe')))
         iframe = div.find_element(By.TAG_NAME, 'iframe')
         self.browser.driver.switch_to.frame(iframe)
-        self.browser.wait_for_element(element=XPATHS['arquivo'])
-        self.browser.driver.find_element(By.XPATH, XPATHS['arquivo']).send_keys(file_path)
+        self.browser.wait_for_element(element=self.xpaths['xpath_arquivo'])
+        self.browser.driver.find_element(By.XPATH, self.xpaths['xpath_arquivo']).send_keys(file_path)
 
-    def insert_data(self, link):
+    def insert_data(self):
+        link = self.data.pop('url_form')
         self.browser.driver.get(link)
         self.browser.wait_for_element(By.PARTIAL_LINK_TEXT, "estudante.uffs.edu.br")
 
@@ -124,10 +116,10 @@ class BotGoogleForm:
             self.fill_form()
             self.fill_file(file_path)
 
-            self.browser.wait_for_element(element=XPATHS['email'], timeout=600)
+            self.browser.wait_for_element(element=self.xpaths['xpath_email'], timeout=600)
 
             while True:
-                if not self.browser.driver.find_element(By.XPATH, XPATHS['email']).get_attribute('value'):
+                if not self.browser.driver.find_element(By.XPATH, self.xpaths['xpath_email']).get_attribute('value'):
                     break
             default_storage.delete(file_path)
         self.browser.driver.close()
