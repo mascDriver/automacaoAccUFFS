@@ -122,4 +122,3 @@ class BotGoogleForm:
                 if not self.browser.driver.find_element(By.XPATH, self.xpaths['xpath_email']).get_attribute('value'):
                     break
             default_storage.delete(file_path)
-        self.browser.driver.close()

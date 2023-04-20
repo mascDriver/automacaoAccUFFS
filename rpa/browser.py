@@ -13,7 +13,7 @@ class Browser:
             self.driver = webdriver.Chrome(ChromeDriverManager().install())
 
     def __del__(self):
-        self.driver.close()
+        self.driver.quit()
 
     def wait_for_element(self, by=By.XPATH, element='', timeout=120):
         WebDriverWait(self.driver, timeout).until(EC.presence_of_element_located((by, element)))

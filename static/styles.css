@@ -26,7 +26,12 @@ label {
     color: var(--fun-green-900);
 }
 
-button {
+.btn-primary {
+    background-color: var(--fun-green-800) !important;
+    border-color: var(--fun-green-50) !important;
+}
+
+.btn-primary:hover {
     background-color: var(--fun-green-900) !important;
     border-color: var(--fun-green-50) !important;
 }
