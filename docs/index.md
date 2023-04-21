@@ -1,5 +1,5 @@
 <p align="center">
-    <img width="800" src="mascDriver/automacaoAccUFFS/assets/logo_uffs.png" title="Logo do projeto"><br />
+    <img width="800" src="https://raw.githubusercontent.com/mascDriver/automacaoAccUFFS/master/assets/logo_uffs.png" title="Logo do projeto"><br />
     <img src="https://img.shields.io/maintenance/yes/2023?style=for-the-badge" title="Status do projeto">
 </p>
 
