@@ -43,11 +43,11 @@ python manage.py runserver
 
 ### Acesse a página inicial da aplicação
 
-![Preenchendo campos](mascDriver/automacaoAccUFFS/preenchendo_campos.gif)
+![Preenchendo campos](https://raw.githubusercontent.com/mascDriver/automacaoAccUFFS/master/preenchendo_campos.gif)
 
 #### O sistema vai preencher com base preenchido no form incial e o que encontrou no arquivo PDF e ira automatizar a escrita no forms do google para todos pdfs que foram enviados
 
-![Usando RPA](mascDriver/automacaoAccUFFS/usando_rpa.gif)
+![Usando RPA](https://raw.githubusercontent.com/mascDriver/automacaoAccUFFS/master/automacaoAccUFFS/usando_rpa.gif)
 
 ### Clique em enviar e submeter outra resposta que o sistema irá iniciar o processo para o próximo pdf
 
