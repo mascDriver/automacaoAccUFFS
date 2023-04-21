@@ -1,5 +1,5 @@
 <p align="center">
-    <img width="800" src="../assets/logo_uffs.png" title="Logo do projeto"><br />
+    <img width="800" src="mascDriver/automacaoAccUFFS/assets/logo_uffs.png" title="Logo do projeto"><br />
     <img src="https://img.shields.io/maintenance/yes/2023?style=for-the-badge" title="Status do projeto">
 </p>
 
@@ -43,11 +43,11 @@ python manage.py runserver
 
 ### Acesse a página inicial da aplicação
 
-![Preenchendo campos](../preenchendo_campos.gif)
+![Preenchendo campos](mascDriver/automacaoAccUFFS/preenchendo_campos.gif)
 
 #### O sistema vai preencher com base preenchido no form incial e o que encontrou no arquivo PDF e ira automatizar a escrita no forms do google para todos pdfs que foram enviados
 
-![Usando RPA](../usando_rpa.gif)
+![Usando RPA](mascDriver/automacaoAccUFFS/usando_rpa.gif)
 
 ### Clique em enviar e submeter outra resposta que o sistema irá iniciar o processo para o próximo pdf
 
