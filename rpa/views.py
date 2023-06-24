@@ -22,6 +22,7 @@ class AccFormView(SuccessMessageMixin, FormView):
         if form2.is_valid():
             status, message = form.initialize_rpa(form2.cleaned_data)
             if status:
+                messages.success(self.request, message)
                 return super().form_valid(form)
             else:
                 messages.error(self.request, message)

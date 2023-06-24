@@ -44,6 +44,7 @@ class BotGoogleForm:
         self.data = data
         self.files = files
         self.xpaths = xpaths
+        self.hours = 0
 
     def extract_information_alura_normal(self, text, language):
         data_finalizado, curso = text.split('Finalizado em ')[-1].split(' Curso_ ')
@@ -62,6 +63,7 @@ class BotGoogleForm:
         data_inicio, data_fim = text.split('no período de ')[-1].split('. ')[0].split(' a ')
         curso = text.split('o curso online "')[-1].split('" de carga')[0]
         horas_curso = text.split('de carga horária estimada em ')[-1].split(' hora')[0]
+        self.hours += int(horas_curso)
         self.data.update({
             'data_inicio': parse(data_inicio).strftime(FORMAT_DATE[language]),
             'data_fim': parse(data_fim).strftime(FORMAT_DATE[language]),
@@ -122,3 +124,4 @@ class BotGoogleForm:
                 if not self.browser.driver.find_element(By.XPATH, self.xpaths['xpath_email']).get_attribute('value'):
                     break
             default_storage.delete(file_path)
+        return f"Foram enviados um total de {self.hours} horas de atividades complementares."

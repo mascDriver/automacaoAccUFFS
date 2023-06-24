@@ -55,8 +55,8 @@ class AccForm(forms.Form):
 
     def initialize_rpa(self, xpaths):
         bot = BotGoogleForm(self.cleaned_data, self.files, xpaths)
-        bot.insert_data()
-        return True, ''
+        msg = bot.insert_data()
+        return True, msg
 
 
 class XpathForm(forms.Form):
